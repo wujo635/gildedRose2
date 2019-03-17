@@ -8,10 +8,11 @@ public class AgedBrieTest {
 
     private GildedRose app;
     private Item[] items;
+    private String name = "Aged Brie";
 
     @Test
     public void shouldIncreaseQualityOnUpdate() {
-        this.items = new Item[]{new Item("Aged Brie", 1, 1)};
+        this.items = new Item[]{new Item(name, 1, 1)};
         this.app = new GildedRose(items);
         app.updateQuality();
         assertEquals(2, app.items[0].quality);
@@ -19,7 +20,7 @@ public class AgedBrieTest {
 
     @Test
     public void shouldDisallowQualityUpdateGreaterThan50() {
-        this.items = new Item[]{new Item("Aged Brie", 1, 50)};
+        this.items = new Item[]{new Item(name, 1, 50)};
         this.app = new GildedRose(items);
         app.updateQuality();
         assertEquals(50, app.items[0].quality);
@@ -27,7 +28,7 @@ public class AgedBrieTest {
 
     @Test
     public void shouldDecreaseSellInOnUpdate() {
-        this.items = new Item[]{new Item("Aged Brie", 1, 1)};
+        this.items = new Item[]{new Item(name, 1, 1)};
         this.app = new GildedRose(items);
         app.updateQuality();
         assertEquals(0, app.items[0].sellIn);
@@ -35,7 +36,7 @@ public class AgedBrieTest {
 
     @Test
     public void shouldDisallowNegativeQuality() {
-        this.items = new Item[]{new Item("Aged Brie", 1, -2)};
+        this.items = new Item[]{new Item(name, 1, -2)};
         this.app = new GildedRose(items);
         app.updateQuality();
         assertEquals(0, app.items[0].quality);
