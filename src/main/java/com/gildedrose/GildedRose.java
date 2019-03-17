@@ -57,9 +57,15 @@ class GildedRose {
                     }
                 }
             }
-            if (items[i].quality < 0) {
-                items[i].quality = 0;
-            }
+            correctQualityBounds(items[i]);
+        }
+    }
+
+    private void correctQualityBounds(Item item) {
+        if (item.quality > 50) {
+            item.quality = 50;
+        } else if (item.quality < 0) {
+            item.quality = 0;
         }
     }
 }
