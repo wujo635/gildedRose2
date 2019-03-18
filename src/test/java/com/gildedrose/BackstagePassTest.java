@@ -29,4 +29,20 @@ public class BackstagePassTest {
         assertEquals(50, app.items[0].quality);
     }
 
+    @Test
+    public void shouldIncreaseQualityBy1IfSellInGreaterThan10() {
+        this.items = new Item[]{new Item(name, 11, 1)};
+        this.app = new GildedRose(items);
+        this.app.updateQuality();
+        assertEquals(2, app.items[0].quality);
+    }
+
+    @Test
+    public void shouldIncreaseQualityBy2IfSellInBetween6And10Days() {
+        this.items = new Item[]{new Item(name, 10, 1)};
+        this.app = new GildedRose(items);
+        this.app.updateQuality();
+        assertEquals(3, app.items[0].quality);
+    }
+
 }
