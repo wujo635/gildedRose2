@@ -58,6 +58,9 @@ class GildedRose {
                 }
             }
             correctQualityBounds(items[i]);
+            if (items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+                items[i].quality = 80;
+            }
         }
     }
 
