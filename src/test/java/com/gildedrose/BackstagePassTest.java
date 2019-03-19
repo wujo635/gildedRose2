@@ -38,11 +38,35 @@ public class BackstagePassTest {
     }
 
     @Test
-    public void shouldIncreaseQualityBy2IfSellInBetween6And10Days() {
+    public void shouldIncreaseQualityBy2IfSellInBetween6And10() {
         this.items = new Item[]{new Item(name, 10, 1)};
         this.app = new GildedRose(items);
         this.app.updateQuality();
         assertEquals(3, app.items[0].quality);
+    }
+
+    @Test
+    public void shouldIncreaseQualityBy3IfSellInLessThan5() {
+        this.items = new Item[]{new Item(name, 5, 1)};
+        this.app = new GildedRose(items);
+        this.app.updateQuality();
+        assertEquals(4, app.items[0].quality);
+    }
+
+    @Test
+    public void shouldDecreaseSellInOnUpdate() {
+        this.items = new Item[]{new Item(name, 5, 1)};
+        this.app = new GildedRose(items);
+        this.app.updateQuality();
+        assertEquals(4, app.items[0].sellIn);
+    }
+
+    @Test
+    public void shouldHaveQualityZeroAfterSellIn() {
+        this.items = new Item[]{new Item(name, 0, 10)};
+        this.app = new GildedRose(items);
+        this.app.updateQuality();
+        assertEquals(0, app.items[0].quality);
     }
 
 }
