@@ -30,6 +30,6 @@ public class GenericItemTest {
         this.items = new Item[]{new Item("Generic item", -1, 3)};
         this.app = new GildedRose(items);
         this.app.updateQuality();
-        assertEquals(1, app.items[0].sellIn);
+        assertEquals(1, app.items[0].quality);
     }
 }
