@@ -11,11 +11,7 @@ class GildedRose {
         for (Item item : items) {
             if (!isAgedBrie(item)
                     && !isBackstagePass(item)) {
-                if (item.quality > 0) {
-                    if (!isSulfuras(item)) {
-                        item.quality--;
-                    }
-                }
+                item.quality--;
             } else {
                 if (item.quality < 50) {
                     item.quality++;
