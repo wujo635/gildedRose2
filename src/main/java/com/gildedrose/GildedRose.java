@@ -16,16 +16,10 @@ class GildedRose {
                 item.quality++;
 
                 if (isBackstagePass(item)) {
-                    if (item.sellIn < 11) {
-                        if (item.quality < 50) {
-                            item.quality++;
-                        }
-                    }
-
                     if (item.sellIn < 6) {
-                        if (item.quality < 50) {
-                            item.quality++;
-                        }
+                        item.quality += 2;
+                    } else if (item.sellIn < 11) {
+                        item.quality++;
                     }
                 }
 
