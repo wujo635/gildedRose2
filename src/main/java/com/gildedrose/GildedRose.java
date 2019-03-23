@@ -14,9 +14,10 @@ class GildedRose {
     }
 
     private void updateItem(Item item) {
+        ItemUpdater updater;
         if (isAgedBrie(item)) {
-            item.quality++;
-            item.sellIn--;
+            updater = new AgedBrieUpdater();
+            updater.update(item);
         } else if (isBackstagePass(item)) {
             if (item.sellIn > 10) {
                 item.quality++;
