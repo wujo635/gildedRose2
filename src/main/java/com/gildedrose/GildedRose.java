@@ -25,12 +25,8 @@ class GildedRose {
             updater = new SulfurasUpdater();
             updater.update(item);
         } else {
-            if (item.sellIn < 0) {
-                item.quality -= 2;
-            } else {
-                item.quality--;
-            }
-            item.sellIn--;
+            updater = new GeneralItemUpdater();
+            updater.update(item);
         }
         if (!isSulfuras(item)) {
             correctQualityBounds(item);
