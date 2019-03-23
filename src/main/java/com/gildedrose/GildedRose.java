@@ -22,7 +22,8 @@ class GildedRose {
             updater = new BackstagePassUpdater();
             updater.update(item);
         } else if (isSulfuras(item)) {
-            item.quality = 80;
+            updater = new SulfurasUpdater();
+            updater.update(item);
         } else {
             if (item.sellIn < 0) {
                 item.quality -= 2;
