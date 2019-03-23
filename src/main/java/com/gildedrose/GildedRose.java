@@ -14,36 +14,32 @@ class GildedRose {
     }
 
     private void updateItem(Item item) {
-        if (!isAgedBrie(item) && !isBackstagePass(item)) {
-            item.quality--;
-        } else {
+        if (isAgedBrie(item)) {
             item.quality++;
-        }
-        if (isBackstagePass(item)) {
-            if (item.sellIn < 6) {
-                item.quality += 2;
-            } else if (item.sellIn < 11) {
+            item.sellIn--;
+        } else if (isBackstagePass(item)) {
+            if (item.sellIn > 10) {
                 item.quality++;
+            } else if (item.sellIn > 5) {
+                item.quality += 2;
+            } else if (item.sellIn > 0) {
+                item.quality += 3;
+            } else {
+                item.quality = 0;
             }
-        }
-        if (!isSulfuras(item)) {
+            item.sellIn--;
+        } else if (isSulfuras(item)) {
+            item.quality = 80;
+        } else {
+            if (item.sellIn < 0) {
+                item.quality -= 2;
+            } else {
+                item.quality--;
+            }
             item.sellIn--;
         }
-
-        if (item.sellIn < 0) {
-            if (!isAgedBrie(item)) {
-                if (!isBackstagePass(item)) {
-                    item.quality--;
-                } else {
-                    item.quality = 0;
-                }
-            } else {
-                item.quality++;
-            }
-        }
-        correctQualityBounds(item);
-        if (isSulfuras(item)) {
-            item.quality = 80;
+        if (!isSulfuras(item)) {
+            correctQualityBounds(item);
         }
     }
 
@@ -60,6 +56,6 @@ class GildedRose {
     }
 
     private void correctQualityBounds(Item item) {
-        item.quality = Math.max(0,Math.min(item.quality, 50));
+        item.quality = Math.max(0, Math.min(item.quality, 50));
     }
 }
