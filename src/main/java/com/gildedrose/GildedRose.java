@@ -18,18 +18,18 @@ class GildedRose {
         if (isAgedBrie(item)) {
             updater = new AgedBrieUpdater();
             updater.update(item);
+            ItemUpdater.boundCheck(item);
         } else if (isBackstagePass(item)) {
             updater = new BackstagePassUpdater();
             updater.update(item);
+            ItemUpdater.boundCheck(item);
         } else if (isSulfuras(item)) {
             updater = new SulfurasUpdater();
             updater.update(item);
         } else {
             updater = new GeneralItemUpdater();
             updater.update(item);
-        }
-        if (!isSulfuras(item)) {
-            correctQualityBounds(item);
+            ItemUpdater.boundCheck(item);
         }
     }
 
@@ -45,7 +45,4 @@ class GildedRose {
         return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
     }
 
-    private void correctQualityBounds(Item item) {
-        item.quality = Math.max(0, Math.min(item.quality, 50));
-    }
 }
