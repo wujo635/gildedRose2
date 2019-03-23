@@ -60,10 +60,6 @@ class GildedRose {
     }
 
     private void correctQualityBounds(Item item) {
-        if (item.quality > 50) {
-            item.quality = 50;
-        } else if (item.quality < 0) {
-            item.quality = 0;
-        }
+        item.quality = Math.max(0,Math.min(item.quality, 50));
     }
 }
