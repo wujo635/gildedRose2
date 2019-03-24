@@ -1,6 +1,18 @@
 package com.gildedrose;
 
+import java.util.HashMap;
+import java.util.Map;
+
 class GildedRose {
+
+    private static Map<String, ItemUpdater> itemUpdaterMap;
+    static {
+        itemUpdaterMap = new HashMap<>();
+        itemUpdaterMap.put("Aged Brie", new AgedBrieUpdater());
+        itemUpdaterMap.put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassUpdater());
+        itemUpdaterMap.put("Sulfuras, Hand of Ragnaros", new SulfurasUpdater());
+    }
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -15,34 +27,12 @@ class GildedRose {
 
     private void updateItem(Item item) {
         ItemUpdater updater;
-        if (isAgedBrie(item)) {
-            updater = new AgedBrieUpdater();
-            updater.update(item);
-            ItemUpdater.boundCheck(item);
-        } else if (isBackstagePass(item)) {
-            updater = new BackstagePassUpdater();
-            updater.update(item);
-            ItemUpdater.boundCheck(item);
-        } else if (isSulfuras(item)) {
-            updater = new SulfurasUpdater();
-            updater.update(item);
+        if (itemUpdaterMap.containsKey(item.name)) {
+            updater = itemUpdaterMap.get(item.name);
         } else {
             updater = new GeneralItemUpdater();
-            updater.update(item);
-            ItemUpdater.boundCheck(item);
         }
-    }
-
-    private boolean isSulfuras(Item item) {
-        return item.name.equals("Sulfuras, Hand of Ragnaros");
-    }
-
-    private boolean isAgedBrie(Item item) {
-        return item.name.equals("Aged Brie");
-    }
-
-    private boolean isBackstagePass(Item item) {
-        return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
+        updater.update(item);
     }
 
 }

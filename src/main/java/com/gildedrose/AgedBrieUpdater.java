@@ -5,5 +5,6 @@ public class AgedBrieUpdater implements ItemUpdater {
     public void update(Item item) {
         item.quality++;
         item.sellIn--;
+        ItemUpdater.boundCheck(item);
     }
 }

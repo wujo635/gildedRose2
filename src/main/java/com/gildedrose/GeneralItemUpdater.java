@@ -9,5 +9,6 @@ public class GeneralItemUpdater implements ItemUpdater {
             item.quality--;
         }
         item.sellIn--;
+        ItemUpdater.boundCheck(item);
     }
 }

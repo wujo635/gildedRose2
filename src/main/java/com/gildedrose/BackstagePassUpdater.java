@@ -13,5 +13,7 @@ public class BackstagePassUpdater implements ItemUpdater {
         } else {
             item.quality = 0;
         }
-        item.sellIn--;    }
+        item.sellIn--;
+        ItemUpdater.boundCheck(item);
+    }
 }
