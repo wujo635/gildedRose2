@@ -11,6 +11,7 @@ class GildedRose {
         itemUpdaterMap.put("Aged Brie", new AgedBrieUpdater());
         itemUpdaterMap.put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassUpdater());
         itemUpdaterMap.put("Sulfuras, Hand of Ragnaros", new SulfurasUpdater());
+        itemUpdaterMap.put("Conjured Item", new ConjuredItemUpdater());
     }
 
     Item[] items;
